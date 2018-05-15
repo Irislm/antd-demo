@@ -4,3 +4,42 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.customerFilterDropdown {
+  width: 240px;
+  padding: 12px 8px;
+  box-shadow: 2px 0px 6px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background: #fff;
+  position: relative;  
+}
+
+.customerFilterDropdown input {
+  margin-right: 8px;
+  width: 136px;
+  border: 1px solid #3480C4;
+}
+
+.customerFilterDropdown button {
+  width: 80px;
+}
+
+.customerFilterDropdown .clearSearchBtn {
+  position: absolute;
+  left: 122px;
+  line-height: 32px;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.customerFilterDropdown .clearSearchBtn:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.enableSearchHeader:hover {
+  background: #d2e3f0 !important;
+  cursor: pointer;
+}
+
+.filtering {
+  color: #3480C4 !important;
+}

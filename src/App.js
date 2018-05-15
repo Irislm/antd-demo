@@ -1,53 +1,59 @@
 import React, { Component } from 'react';
 import { Select, Spin } from 'antd';
 import './App.css';
-
+import StandardTable from './StandardTable';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerListSelected: [],
-      loadingCustomer: false,
+      searchDropDownVisible: false,
+      filtering: false,      
     }
   }
+  onFilter = (value) => {
+    this.setState({
+      filtering: !!value,
+    }, () => {
+      // do async filter
+    })
+  }
   render() {
-    const customerList = [{
-      id: '1',
-      name: 'Lily',
-    }, {
-      id: '2',
-      name: 'Sea',
-    }, {
-      id: '3',
-      name: 'Mary'
-    }];
-    const { customerListSelected } = this.state;
+    const columns = [
+      {
+        title: '姓名',
+        dataIndex: 'name',
+        ncSearch: true,  // customized
+        filtering: this.state.filtering,  // customized
+        searchDropDownVisible: this.state.searchDropDownVisible,  // customized
+        onSearch: value => this.onFilter(value),  // customized
+        onSearchDropdownVisibleChange: (visible, callback) => {  // customized
+          this.setState({
+            searchDropDownVisible: visible,
+          }, () => {
+            callback();
+          });
+        },
+      }, {
+        title: '年龄',
+        dataIndex: 'age',
+      }
+    ];
+    const tableConfig = {
+      dataSource: [{
+        id: '1',
+        name: 'Jessie',
+        age: '18',
+      }, {
+        id: '2',
+        name: 'Linda',
+        age: '20',
+      }],
+      pagination: false,
+      columns,
+      rowKey: record => record.id,
+    };
     return (
-      <div className="App">
-        <Select
-          showSearch
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-          mode="multiple"
-          style={{ minWidth: '20rem', width: 'auto' }}
-          placeholder="请搜索选择客户，支持搜索和多选"
-          value={customerListSelected.length > 0 ? customerListSelected : undefined}
-          onSelect={(value) => {
-            const temp = this.state.customerListSelected.concat(value);
-            this.setState({
-              customerListSelected: temp
-            })
-          }}
-        >
-          {
-            this.state.loadingCustomer && customerList.length === 0 && <Select.Option key="searching" disabled><Spin /></Select.Option>
-          }
-          {
-            customerList.length !== 0 && customerList.map((row) => {
-              return <Select.Option key={row.id}>{row.name}</Select.Option>;
-            })
-          }
-        </Select>
-      </div>
+      <StandardTable {...tableConfig} />
     );
   }
 }
