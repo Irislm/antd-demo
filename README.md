@@ -2,8 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project is based on [ant-design](https://ant.design/index-cn)
 
-# Something is wrong with Select 
+# FilterDropDown and filterIcon no render when I wrap Table within customized columns props
 
-1、Select Component's mode is multiple
-2、select any option
-3、error log: Cannot read property 'props' of null at getValuePropValue.
+1、Run app: npm start
+2、No render filterIcon in Column '姓名'
+3、Click Column '姓名' header cell, no render filterDropDown
