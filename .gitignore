@@ -1,0 +1,15 @@
+.sass-cache/
+node_modules/
+dist/
+rev-manifest.json
+config.js
+**/templates.js
+.idea
+src/biz/base/sass/generated-sprite.scss
+src/image/sprite.png
+
+**/*/.DS_Store
+.DS_Store
+.vscode/
+cp.sh
+package-lock.json
